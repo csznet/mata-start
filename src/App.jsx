@@ -68,9 +68,18 @@ function App() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
+    // 如果是 Corn 字段，强制转换成整数类型
+    const newValue =
+      type === "checkbox"
+        ? checked
+        : name === "Corn"
+        ? parseInt(value, 10)
+        : value;
+
     setConfig({
       ...config,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: newValue,
     });
   };
 
